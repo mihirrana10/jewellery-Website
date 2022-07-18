@@ -63,23 +63,24 @@
                      <div class="login-registration-style-2 mt-50">
                         <h1 class="heading-4 font-weight-500 title">Login</h1>
                         <div class="login-registration-form pt-10">
-                           <form action="#">
+                           <form action="/login" method="post" >
+                              @csrf
                               <div class="single-form form-default form-border">
                                  <label>Email Address</label>
                                  <div class="form-input">
-                                    <input type="email" placeholder="user@email.com">
+                                    <input type="email" name="email" placeholder="user@email.com">
                                     <i class="mdi mdi-email"></i>
                                  </div>
                               </div>
                               <div class="single-form form-default form-border">
                                  <label>Your Password</label>
                                  <div class="form-input">
-                                    <input id="password-7" type="password" placeholder="Password">
+                                    <input id="password-7" type="password" name="password" placeholder="Password">
                                     <i class="mdi mdi-lock"></i>
                                     <span toggle="#password-7" class="mdi mdi-eye-outline toggle-password"></span>
                                  </div>
                               </div>
-                              <div class="login-checkbox-forget d-sm-flex justify-content-between align-items-center">
+                              <div class=/login-checkbox-forget d-sm-flex justify-content-between align-items-center">
                                  <div class="single-checkbox checkbox-style-3">
                                     <input type="checkbox" id="login-7">
                                     <label for="login-7"><span></span> </label>

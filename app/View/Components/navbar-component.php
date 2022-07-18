@@ -25,4 +25,5 @@ class navbarcomponent extends Component
     {
         return view('components.navbar-component');
     }
+    
 }

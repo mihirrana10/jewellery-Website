@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //admin site
-Route::get('/index', function () {
-    return view('admin.index');
-});
+
 
 
 
@@ -26,9 +27,8 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
+Route::get("/login",[AuthController::class,'login'])->name('login');//user
+
 Route::get('/about', function () {
     return view('pages.about');
 });
@@ -38,6 +38,34 @@ Route::get('/contact', function () {
 Route::get('/signup', function () {
     return view('pages.signup');
 });
+
+Route::post('/signup',[AuthController::class,'signup']);//user
+Route::post('/login',[AuthController::class,'authenticate']);//user
+
+
 Route::get('/profile', function () {
     return view('pages.profile');
 });
+
+Route::prefix('admin')->group(function (){
+
+    Route::get('/dashbord', function () {
+        return view('admin.dashbord');
+    });
+    Route::get("/login",[AdminAuthController::class,'login'])->name('login');//admin
+
+    Route::get('/signup', function () {
+        return view('admin.signup');
+    });
+    Route::post('/signup',[AdminAuthController::class,'signup']);
+    Route::post('/login',[AdminAuthController::class,'authenticate']);
+
+
+});
+
+
+
+Route::get("/logout",[AuthController::class,'logout']);
+
+
+

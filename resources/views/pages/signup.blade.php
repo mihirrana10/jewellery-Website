@@ -62,19 +62,20 @@
                      <div class="login-registration-style-1 registration text-center mt-50">
                         <h1 class="heading-4 font-weight-500 title">Create an Account with</h1>
                         <div class="login-registration-form pt-10">
-                           <form action="#">
+                           <form action="/signup" method="post">
+                              @csrf
                               <div class="single-form form-default form-border text-left">
                                  <label>Full Name</label>
                                  <div class="row">
                                     <div class="col-sm-6">
                                        <div class="form-input">
-                                          <input type="text" placeholder="First Name">
+                                          <input type="text" name="fname" placeholder="First Name">
                                           <i class="mdi mdi-account"></i>
                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                        <div class="form-input form">
-                                          <input type="text" placeholder="Last Name">
+                                          <input type="text" name="lname" placeholder="Last Name">
                                        </div>
                                     </div>
                                  </div>
@@ -82,25 +83,34 @@
                               <div class="single-form form-default form-border text-left">
                                  <label>Email Address</label>
                                  <div class="form-input">
-                                    <input type="email" placeholder="user@email.com">
+                                    <input type="email" name="email" placeholder="user@email.com">
                                     <i class="mdi mdi-email"></i>
                                  </div>
                               </div>
                               <div class="single-form form-default form-border text-left">
                                  <label>Choose Password</label>
                                  <div class="form-input">
-                                    <input id="password-3" type="password" placeholder="Password">
+                                    <input id="password-3" type="password" name="password" placeholder="Password">
                                     <i class="mdi mdi-lock"></i>
                                     <span toggle="#password-3" class="mdi mdi-eye-outline toggle-password"></span>
                                  </div>
                               </div>
+                              <div class="single-form form-default form-border text-left">
+                                 <label>Confirm Password</label>
+                                 <div class="form-input">
+                                    <input id="password-3" type="password" name="confirmPassword" placeholder="Confirm Password">
+                                    <i class="mdi mdi-lock"></i>
+                                    <span toggle="#password-3" class="mdi mdi-eye-outline toggle-password"></span>
+                                 </div>
+                              </div>
+                          
                               <div class="single-checkbox checkbox-style-3">
                                  <input type="checkbox" id="login-3">
                                  <label for="login-3"><span></span> </label>
                                  <p>I accept the Terms of Use.</p>
                               </div>
                               <div class="single-form">
-                                 <button class="main-btn primary-btn">Sign up</button>
+                                 <button class="main-btn primary-btn" type="submit">Sign up</button>
                               </div>
                            </form>
                         </div>
