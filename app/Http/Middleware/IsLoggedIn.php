@@ -17,15 +17,18 @@ class IsLoggedIn
      */
     public function handle(Request $request, Closure $next, $guard)
     {
-        if( $guard=='user' && !Auth::guard($guard)->check()){
-            return response()->json("Back off!!", 200);;
-           // return new Response("<h1>Not found</h1>",404);
-       }
 
-       if(!Auth::guard($guard)->check()){
-           return response()->json("Back off!!", 200);;
-          // return new Response("<h1>Not found</h1>",404);
-      }
+        if($guard=='user' ){
+            if(!Auth::guard($guard)->check())
+                 return response()->redirectTo('/login');
+        }
+
+       if($guard=='admin' ){
+
+            if(!Auth::guard($guard)->check())
+                return response()->redirectTo('/admin/login');
+        }
+
         return $next($request);
     }
 }

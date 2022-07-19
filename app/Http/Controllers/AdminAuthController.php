@@ -15,13 +15,13 @@ class AdminAuthController extends Controller
             'password' => ['required'],
         ]);
         // dd($credentials);
- 
+
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->intended('/admin/index');
+
+            return redirect()->intended('/admin/dashboard');
         }
- 
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -34,9 +34,9 @@ class AdminAuthController extends Controller
             'lname'=>['required'],
             'email' => ['required', 'email'],
             'password' => ['required'],
-            
+
         ]);
-        
+
         Admin::create([
             'first_name'=>$credentials['fname'],
             'last_name'=>$credentials['lname'],
@@ -48,13 +48,25 @@ class AdminAuthController extends Controller
         ]);
     }
 
+
+
     public function login(){
         // dd(Auth::check());
-        // if(Auth::guard('user') && Auth::check()){
-        // return \redirect()->to('/');
-        // }
+        // $this->middleware('guest:user');
+        if(Auth::guard('admin')->check()){
+             return \redirect('/admin/dashboard');
+        }
         // // dd('hello');
 
         return view('admin.login');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return \redirect()->to("/admin/login");
     }
 }

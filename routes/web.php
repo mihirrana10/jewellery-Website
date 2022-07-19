@@ -21,51 +21,64 @@ use App\Http\Controllers\AdminAuthController;
 
 
 
+Route::prefix('/')->group(function(){
+    Route::get('', function () {
+        return view('pages.index');
+    })->middleware('islogin:user');;
 
-//user site
-Route::get('/', function () {
-    return view('pages.index');
+    Route::get("login",[AuthController::class,'login'])->middleware('guest:user');
+    Route::post('login',[AuthController::class,'authenticate'])->middleware('guest:user');
+
+    Route::get('signup', function () {
+        return view('pages.signup');
+    })->middleware('guest:user');
+    Route::post('signup',[AuthController::class,'signup'])->middleware('guest:user');
+
+    Route::get("/logout",[AuthController::class,'logout'])->middleware('islogin:user');
+
+    Route::get('about', function () {
+        return view('pages.about');
+    })->middleware('guest:user');
+
+    Route::get('contact', function () {
+        return view('pages.contact');
+    })->middleware('guest:user');
+
+    Route::get('profile', function () {
+        return view('pages.profile');
+    })->middleware('guest:user');
+
 });
 
-Route::get("/login",[AuthController::class,'login'])->name('login');//user
-
-Route::get('/about', function () {
-    return view('pages.about');
-});
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
-Route::get('/signup', function () {
-    return view('pages.signup');
-});
-
-Route::post('/signup',[AuthController::class,'signup']);//user
-Route::post('/login',[AuthController::class,'authenticate']);//user
 
 
-Route::get('/profile', function () {
-    return view('pages.profile');
-});
 
-Route::prefix('admin')->group(function (){
+Route::prefix('/admin')->group(function (){
 
-    Route::get('/dashbord', function () {
-        return view('admin.dashbord');
-    });
-    Route::get("/login",[AdminAuthController::class,'login'])->name('login');//admin
+    Route::get('dashboard', function () {
+        return view('admin.dashboard');
+    })->middleware('islogin:admin')->name('admin.dashboard');
 
-    Route::get('/signup', function () {
+    Route::get("login",[AdminAuthController::class,'login'])->middleware('guest:admin');
+    Route::post('login',[AdminAuthController::class,'authenticate'])->middleware('guest:admin');
+
+
+    Route::get('signup', function () {
         return view('admin.signup');
-    });
-    Route::post('/signup',[AdminAuthController::class,'signup']);
-    Route::post('/login',[AdminAuthController::class,'authenticate']);
+    })->middleware('guest:admin');
 
 
+    Route::post('signup',[AdminAuthController::class,'signup'])->middleware('guest:admin');
+
+    Route::get("logout",[AdminAuthController::class,'logout'])->middleware('islogin:admin');
 });
 
 
 
-Route::get("/logout",[AuthController::class,'logout']);
+
+
+
+
 
 
 
