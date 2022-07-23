@@ -71,6 +71,11 @@ Route::prefix('/admin')->group(function (){
     Route::post('signup',[AdminAuthController::class,'signup'])->middleware('guest:admin');
 
     Route::get("logout",[AdminAuthController::class,'logout'])->middleware('islogin:admin');
+    
+    Route::get("addProduct",function(){
+        return view('admin.pages.addProduct');
+    })->middleware('islogin:admin');
+
 });
 
 

@@ -15,17 +15,16 @@ return new class extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            $table->string('street');
-            $table->string('address');
             $table->string('contact_number');
             $table->string('zipcode')->nullable();
+            $table->string('address');
             $table->string('country');
             $table->unsignedbigInteger('user_id');
            
 
             $table->timestamps();
 
-            $table->foreign('id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
