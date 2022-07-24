@@ -39,7 +39,7 @@ return new class extends Migration
             $table->longText("product_description");
             // $table->bigInteger("product_image_id");
             $table->float("product_discount",5,2);               
-            $table->float("product_gst",5,2); 
+            // $table->float("product_gst",5,2); 
             $table->float("product_size",5,2); 
             $table->float("product_length",5,2);
             $table->unsignedbigInteger("category_id"); 

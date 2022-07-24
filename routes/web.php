@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminAuthController;
 
 
@@ -72,11 +73,31 @@ Route::prefix('/admin')->group(function (){
 
     Route::get("logout",[AdminAuthController::class,'logout'])->middleware('islogin:admin');
     
-    Route::get("addProduct",function(){
-        return view('admin.pages.addProduct');
+    // Route::get("addProduct",function(){
+    //     return view('admin.pages.addProduct');
+    // })->middleware('islogin:admin');
+
+    Route::get("addCategory",function(){
+        return view('admin.pages.addCategory');
     })->middleware('islogin:admin');
 
+    Route::get("categoryView",function(){
+        return view('admin.pages.categoryView');
+    })->middleware('islogin:admin');
+
+    Route::get("usermanagementView",function(){
+        return view('admin.pages.usermanagementView');
+    })->middleware('islogin:admin');
+
+    Route::get("ordermanagementView",function(){
+        return view('admin.pages.ordermanagementView');
+    })->middleware('islogin:admin');
+
+    Route::resource('product',ProductController::class);
+    
 });
+
+
 
 
 

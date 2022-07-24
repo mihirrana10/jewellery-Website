@@ -11,7 +11,7 @@
       <!-- partial:partials/_settings-panel.html side menu -->
      @include('admin.sidecol')
       
-      <div id="right-sidebar" class="settings-panel">
+      {{-- <div id="right-sidebar" class="settings-panel">
         <i class="settings-close ti-close"></i>
         <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
           <li class="nav-item">
@@ -160,7 +160,7 @@
           </div>
           <!-- chat tab ends -->
         </div>
-      </div>
+      </div> --}}
       <!-- partial -->
       <!-- partial:partials/_sidebar.html  SIDE BAR-->
       @include('admin.sidemenu')
@@ -172,31 +172,46 @@
               <div class="card-body">
                 <h4 class="card-title">Add Products</h4>
                <hr>
-                <form class="forms-sample">
-                  <div class="form-group">
+               {{$errors}}
+                <form class="forms-sample" action="/admin/product" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  <div class="row">
+                  <div class="form-group col-6">
                     <label for="exampleInputName1">Product Name</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="product_name">
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Product Name" name="product_name" value="{{old('product_name')}}">
+                    @error('product_name')
+                    <span>valied product</span>
+                    @enderror
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-6">
                     <label for="exampleInputEmail3">Product Style Number</label>
-                    <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_style_number">
+                    <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_style_number" value="{{old('product_style_number')}}">
+                    @error('product_style_number')
+                    <span>valied product</span>
+                    @enderror
                   </div>
-                  
-                  <div class="form-group">
+                 </div> 
+                  <hr>
+                  <h4 class="card-title">Metal</h4>
+                  <hr>
+                 <div class="row">   
+                  <div class="form-group col-6">
                         <label for="exampleSelectGender">Metal Type</label>
                           <select class="form-control" id="exampleSelectGender" name="metal_type">
                               <option value="">Select Metal Type</option>
                           <option value="Gold">Gold</option>
                           <option value="Silver">Silver</option>
-                          <option value="Platinum">Platinum</option>
+                          <option value="Platinum2hellobro">Platinum</option>
                          
                          </select>                    
-                  </div>
-                  <div class="form-group">
+                    </div>
+                    <div class="form-group col-6">
                         <label for="exampleInputEmail3">Metal Weight</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="metal_weight">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Metal Weight" name="metal_weight">
                       </div>
-                      <div class="form-group">
+                 </div>   
+                 <div class="row">      
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Metal Unit</label>
                         <select class="form-control" id="exampleSelectGender" name="metal_unit">
                               <option value="">Select Metal unit</option>
@@ -206,7 +221,7 @@
                          
                          </select> 
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Metal Purity</label>
                         <select class="form-control" id="exampleSelectGender" name="metal_purity">
                               <option value="">Select Metal Purity</option>
@@ -219,16 +234,22 @@
                          
                          </select> 
                       </div>
-                      <div class="form-group">
+                 </div>  
+                 <div class="row">     
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Metal Color</label>
-                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="metal_color">
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Metal Color" name="metal_color">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Metal Price</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="metal_price">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Metal Price" name="metal_price">
                       </div>
-
-                      <div class="form-group">
+                 </div>     
+                      <hr>
+                      <h4 class="card-title">Diamond</h4>
+                      <hr>
+                   <div class="row">    
+                      <div class="form-group col-6">
                         <label for="exampleSelectGender">Diamond Type</label>
                           <select class="form-control" id="exampleSelectGender" name="diamond_type">
                               <option value="">Select Diamond Type</option>
@@ -237,77 +258,88 @@
                           <option value="Platinum">Platinum</option>
                          
                          </select>                    
-                  </div>
-
-                    <div class="form-group">
+                    </div>
+                
+                    <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Color</label>
-                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_color">
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Diamond Color" name="diamond_color">
                       </div>
-
-                      <div class="form-group">
+                   </div>   
+                   <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Count</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_count">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Diamond Count" name="diamond_count">
                       </div>
 
-                       <div class="form-group">
+                       <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Price</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_price">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Diamond Price" name="diamond_price">
                       </div>
-
-                      <div class="form-group">
+                   </div>
+                   <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Setting Type</label>
-                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_setting_type">
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Diamond Setting Type" name="diamond_setting_type">
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Grade</label>
-                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_grade">
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Diamond Grade" name="diamond_grade">
                       </div>
-
-                      <div class="form-group">
+                   </div>
+                   <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond Gross Weight</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diamond_gross_weight">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Diamond Gross Weight" name="diamond_gross_weight">
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Diamond weight Unit</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="diomond_weight_unit">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Diamond weight Unit" name="diomond_weight_unit">
                       </div>
-
-                      <div class="form-group">
+                   </div> 
+                   <hr>
+                   <h4 class="card-title">Product Detils</h4>
+                   <hr>
+                   <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product Height</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_height">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Height" name="product_height">
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product Weight</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_width">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Weight" name="product_width">
                       </div>
+                   </div>
                       <div class="form-group">
                         <label for="exampleInputEmail3">Product Description</label>
-                        <textarea class="form-control" id="exampleTextarea1"  style="height:150px"></textarea>
+                        <textarea class="form-control" id="exampleTextarea1" name="product_description" placeholder="Product Description" style="height:150px"></textarea>
                       </div>
-
-                      <div class="form-group">
+                    <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product Discount</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_discount">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Discount" name="product_discount">
                       </div>
 
-                      <div class="form-group">
+                      {{-- <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product GST</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_gst">
-                      </div>
-
-                      <div class="form-group">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product GST" name="product_gst">
+                      </div> --}}
+                    </div>
+                    <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product Size</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_size">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Size" name="product_size">
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Product Length</label>
-                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Style Number" name="product_length">
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Product Length" name="product_length">
                       </div>
+                    </div>
 
-                      <div class="form-group">
+                    <div class="row">   
+                      <div class="form-group col-6">
                         <label for="exampleInputEmail3">Category</label>
                         <select class="form-control" id="exampleSelectGender" name="category_id" >
                               <option value="">Select Category Type</option>
@@ -316,20 +348,17 @@
                           <option value="3">Earings</option>
                          
                          </select>  
+                         
                       </div>
-                      <div class="form-group">
+                      <div class="form-group col-6">
                         <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                          <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                          </span>
-                        </div>
-                      </div>
+                        <input type="file" name="img[]" class="form-control" accept="image/*">
 
-                  <button type="submit" class="btn btn-primary me-2">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                      </div>
+                    </div>
+
+                  <button type="submit" name="" class="btn btn-primary me-2">Submit</button>
+                  <button type="reset" class="btn btn-light">Cancel</button>
                 </form>
               </div>
             </div>
